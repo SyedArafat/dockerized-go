@@ -8,5 +8,5 @@ import (
 func main() {
 	env := os.Getenv("APP_ENV")
 	fmt.Println(env)
-	fmt.Println("Hello Worlds")
+	fmt.Println("Hello Arafat")
 }

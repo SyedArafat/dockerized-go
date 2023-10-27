@@ -9,7 +9,7 @@ services:
     image: export_nrt_report:${DOCKER_BUILD_MODE}
     build:
       context: ${DOCKER_BUILD_CONTEXT_DIR}
-      dockerfile: docker/app/Dockerfile
+      dockerfile: docker/app/${DOCKER_BUILD_MODE}.Dockerfile
       args:
         - HTTP_PROXY=${APP_HTTP_PROXY}
         - HTTPS_PROXY=${APP_HTTPS_PROXY}
