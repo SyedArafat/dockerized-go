@@ -4,19 +4,19 @@ ARG MAINTAINER="Sayed Yeamin Arafat <sayed.yeamin@brainstation-23.com>"
 
 FROM golang:${GO_VERSION}-${GO_IMAGE_TYPE} as app-base
 
-ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64 \
-    TZ=asd
+ARG TIMEZONE
+ARG GOOS
+ARG GOARCH
+ARG CGO_ENABLED
+ARG DOCKER_BUILD_MODE
 
-#ENV TZ ${TIMEZONE}
+ENV GO111MODULE=on \
+    CGO_ENABLED=${CGO_ENABLED} \
+    GOOS=${GOOS} \
+    GOARCH=${GOARCH} \
+    TZ=${TIMEZONE}
 
 LABEL org.opencontainers.image.authors=${MAINTAINER}
-
-
-#RUN apk update && \
-#    apk add nano curl
 
 WORKDIR /usr/src/app
 
@@ -28,12 +28,13 @@ RUN go mod download && go mod verify
 COPY ./codes .
 RUN go build -o /goapp .
 
-#FROM alpine:latest
-#COPY --from=app-base /goapp /goapp
+FROM alpine:latest
+COPY --from=app-base /goapp /goapp
+
+EXPOSE 8080
 
 # Run the executable
-EXPOSE 8080
-#ENTRYPOINT [ "/goapp" ]
+ENTRYPOINT [ "/goapp" ]
 
 
 

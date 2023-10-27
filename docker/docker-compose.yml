@@ -14,9 +14,11 @@ services:
         - HTTP_PROXY=${APP_HTTP_PROXY}
         - HTTPS_PROXY=${APP_HTTPS_PROXY}
         - NO_PROXY=${APP_NO_PROXY}
-    environment:
-      TIMEZONE: "AAA"
-      DOCKER_BUILD_MODE: ${DOCKER_BUILD_MODE}
+        - TZ=${TIMEZONE}
+        - GOS=${GOOS}
+        - GOARCH=${GOARCH}
+        - CGO_ENABLED=${CGO_ENABLED}
+        - DOCKER_BUILD_MODE=${DOCKER_BUILD_MODE}
 #    restart: always
     container_name:
       export-nrt-report-container
