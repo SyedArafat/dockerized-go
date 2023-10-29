@@ -1,8 +1,8 @@
 version: '3.7'
 
 networks:
-  default:
-    driver: ${NETWORKS_DRIVER}
+  common-net:
+    external: true
 
 services:
   app:
