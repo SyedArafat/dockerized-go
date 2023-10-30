@@ -10,3 +10,5 @@ services:
       - ${DOCKER_VOLUME_CODES_ROOT_DIR}:/usr/src/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - common-net
