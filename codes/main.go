@@ -1,12 +1,16 @@
 package main
 
 import (
+	"export_nrt_report/packages/db"
 	"fmt"
-	"os"
 )
 
 func main() {
-	env := os.Getenv("APP_ENV")
-	fmt.Println(env)
 	fmt.Println("Hello Arafat")
+	initialize()
+}
+
+func initialize() {
+	conn := db.MySqlConnection()
+	defer conn.Close()
 }
