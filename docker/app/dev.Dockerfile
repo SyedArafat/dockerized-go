@@ -30,7 +30,7 @@ RUN go mod download && go mod verify
 
 # COPY All things inside the project and build
 COPY ./codes .
-RUN go build -o /goapp .
+RUN go build -o /goapp ./cmd/main/
 
 EXPOSE 8080
 
@@ -38,6 +38,6 @@ EXPOSE 8080
 #ENTRYPOINT [ "/goapp" ]
 
 # Run Go program, just like locally
-ENTRYPOINT ["go","run","main.go"]
+#ENTRYPOINT ["go","run","main.go"]
 
 
