@@ -17,7 +17,7 @@ func main() {
 		}
 	}(dbConn)
 	fmt.Println("Project Initialisation Successful")
-	actions.GetCommissionRecords()
+	actions.GenerateCSV()
 }
 
 func initialize() *sql.DB {
