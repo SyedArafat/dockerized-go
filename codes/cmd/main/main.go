@@ -2,29 +2,27 @@ package main
 
 import (
 	"database/sql"
-	"export_nrt_report/internal/controller"
+	"export_nrt_report/internal/actions"
 	"export_nrt_report/internal/database"
+	"export_nrt_report/internal/repository"
 	"fmt"
-	"github.com/joho/godotenv"
-	"log"
 )
 
 func main() {
 	dbConn := initialize()
-	defer dbConn.Close()
-	a := "Initialisation Successful"
-	fmt.Println(a)
-	controller.GetCommissionRecords()
+	defer func(dbConn *sql.DB) {
+		err := dbConn.Close()
+		if err != nil {
+
+		}
+	}(dbConn)
+	fmt.Println("Project Initialisation Successful")
+	actions.GetCommissionRecords()
 }
 
 func initialize() *sql.DB {
-	err := godotenv.Load("../../.env")
-	if err != nil {
-		log.Fatal(err)
-	}
 	conn, _ := database.ConnectSQL()
-
-	controller.SetDatabase(conn.SQL)
+	repository.SetDatabase(conn.SQL)
 
 	return conn.SQL
 }

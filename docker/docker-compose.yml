@@ -9,7 +9,7 @@ services:
     image: export_nrt_report:${DOCKER_BUILD_MODE}
     build:
       context: ${DOCKER_BUILD_CONTEXT_DIR}
-      dockerfile: docker/app/${DOCKER_BUILD_MODE}.Dockerfile
+      dockerfile: docker/app/Dockerfile
       args:
         - HTTP_PROXY=${APP_HTTP_PROXY}
         - HTTPS_PROXY=${APP_HTTPS_PROXY}
@@ -18,7 +18,7 @@ services:
         - GOS=${GOOS}
         - GOARCH=${GOARCH}
         - CGO_ENABLED=${CGO_ENABLED}
-        - DOCKER_BUILD_MODE=${DOCKER_BUILD_MODE}
+      target: ${DOCKER_BUILD_MODE}
 #    restart: always
     container_name:
       export-nrt-report-container
